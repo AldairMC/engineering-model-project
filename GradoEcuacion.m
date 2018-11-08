@@ -52,9 +52,14 @@ function GradoEcuacion_OpeningFcn(hObject, eventdata, handles, varargin)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 % varargin   command line arguments to GradoEcuacion (see VARARGIN)
-img1=imread('imagen1.jpg');
+img1=imread('fondo-grado-ecuacion.jpg');
 image(img1)
 axis off
+
+img2=imread('ok.jpg');
+set(handles.pushbutton1,'CData',img2)
+
+
 
 % Choose default command line output for GradoEcuacion
 handles.output = hObject;
@@ -85,8 +90,17 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 global ys;
 global us;
 if isempty(ys) || isempty(us)
-    errordlg('Campo(s) vacio(s)','Error')    
-end    
+    errordlg('Campo(s) vacio(s)','Error')
+elseif ys > 5 || us > 5 
+    errordlg('El grado de los polinomios es muy alto!','Error')      
+elseif ys < 0 || us < 0
+    errordlg('Grado no permitido!','Error')
+%%else
+    %%set(hObject.text7, 'string', 'Hola!');
+    %%Principal;
+end
+
+
 
 
 
@@ -95,8 +109,8 @@ function edit1_Callback(hObject, eventdata, handles)
 % hObject    handle to edit1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-global us;
-us=str2double(get(hObject,'String'));
+global ys;
+ys=str2double(get(hObject,'String'));
 
 % Hints: get(hObject,'String') returns contents of edit1 as text
 %        str2double(get(hObject,'String')) returns contents of edit1 as a double
@@ -121,8 +135,8 @@ function edit2_Callback(hObject, eventdata, handles)
 % hObject    handle to edit2 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-global ys;
-ys=str2double(get(hObject,'String'));
+global us;
+us=str2double(get(hObject,'String'));
 
 % Hints: get(hObject,'String') returns contents of edit2 as text
 %        str2double(get(hObject,'String')) returns contents of edit2 as a double

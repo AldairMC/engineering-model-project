@@ -43,7 +43,7 @@ else
 end
 % End initialization code - DO NOT EDIT
 
-function img_fonfo_Open
+
 
 % --- Executes just before GradoEcuacion is made visible.
 function GradoEcuacion_OpeningFcn(hObject, eventdata, handles, varargin)
@@ -52,6 +52,13 @@ function GradoEcuacion_OpeningFcn(hObject, eventdata, handles, varargin)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 % varargin   command line arguments to GradoEcuacion (see VARARGIN)
+img1=imread('fondo-grado-ecuacion.jpg');
+image(img1)
+axis off
+
+img2=imread('ok.jpg');
+set(handles.pushbutton1,'CData',img2)
+
 
 
 % Choose default command line output for GradoEcuacion
@@ -80,6 +87,22 @@ function pushbutton1_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+global ys;
+global us;
+set(nObject, 'Enable', 'off');
+if isempty(ys) || isempty(us)
+    errordlg('Campo(s) vacio(s)','Error')
+elseif ys > 5 || us > 5 
+    errordlg('El grado de los polinomios es muy alto!','Error')      
+elseif ys < 0 || us < 0
+    errordlg('Grado no permitido!','Error')
+%%else
+    %%set(hObject.text7, 'string', 'Hola!');
+    %%Principal;
+end
+
+
+
 
 
 
@@ -87,6 +110,8 @@ function edit1_Callback(hObject, eventdata, handles)
 % hObject    handle to edit1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+global ys;
+ys=str2double(get(hObject,'String'));
 
 % Hints: get(hObject,'String') returns contents of edit1 as text
 %        str2double(get(hObject,'String')) returns contents of edit1 as a double
@@ -97,6 +122,7 @@ function edit1_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to edit1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
+
 
 % Hint: edit controls usually have a white background on Windows.
 %       See ISPC and COMPUTER.
@@ -110,6 +136,8 @@ function edit2_Callback(hObject, eventdata, handles)
 % hObject    handle to edit2 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+global us;
+us=str2double(get(hObject,'String'));
 
 % Hints: get(hObject,'String') returns contents of edit2 as text
 %        str2double(get(hObject,'String')) returns contents of edit2 as a double
