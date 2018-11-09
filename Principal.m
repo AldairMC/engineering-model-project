@@ -22,7 +22,7 @@ function varargout = Principal(varargin)
 
 % Edit the above text to modify the response to help Principal
 
-% Last Modified by GUIDE v2.5 08-Nov-2018 14:05:48
+% Last Modified by GUIDE v2.5 09-Nov-2018 10:40:26
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -108,6 +108,9 @@ set(handles.pushbutton2,'CData',imbtn2)
 imbtn3=imread('ok.jpg');
 set(handles.pushbutton3,'CData',imbtn3)
 
+imbtn4=imread('clear.jpg');
+set(handles.pushbutton4,'CData',imbtn4)
+
 set(handles.edit1, 'Enable', 'off')
 set(handles.edit2, 'Enable', 'off')
 set(handles.edit3, 'Enable', 'off')
@@ -120,6 +123,7 @@ set(handles.edit9, 'Enable', 'off')
 set(handles.edit10, 'Enable', 'off')
 set(handles.edit11, 'Enable', 'off')
 set(handles.edit12, 'Enable', 'off')
+set(handles.pushbutton3, 'Enable', 'off');
 
 % Choose default command line output for Principal
 handles.output = hObject;
@@ -154,7 +158,8 @@ function edit1_Callback(hObject, eventdata, handles)
 % hObject    handle to edit1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
+global ysCinco;
+ysCinco=str2double(get(hObject,'String'));
 % Hints: get(hObject,'String') returns contents of edit1 as text
 %        str2double(get(hObject,'String')) returns contents of edit1 as a double
 
@@ -177,7 +182,8 @@ function edit2_Callback(hObject, eventdata, handles)
 % hObject    handle to edit2 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
+global ysCuatro;
+ysCuatro=str2double(get(hObject,'String'));
 % Hints: get(hObject,'String') returns contents of edit2 as text
 %        str2double(get(hObject,'String')) returns contents of edit2 as a double
 
@@ -200,7 +206,8 @@ function edit3_Callback(hObject, eventdata, handles)
 % hObject    handle to edit3 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
+global ysTres;
+ysTres=str2double(get(hObject,'String'));
 % Hints: get(hObject,'String') returns contents of edit3 as text
 %        str2double(get(hObject,'String')) returns contents of edit3 as a double
 
@@ -223,7 +230,8 @@ function edit4_Callback(hObject, eventdata, handles)
 % hObject    handle to edit4 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
+global ysDos;
+ysDos=str2double(get(hObject,'String'));
 % Hints: get(hObject,'String') returns contents of edit4 as text
 %        str2double(get(hObject,'String')) returns contents of edit4 as a double
 
@@ -246,7 +254,8 @@ function edit5_Callback(hObject, eventdata, handles)
 % hObject    handle to edit5 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
+global ysUno;
+ysUno=str2double(get(hObject,'String'));
 % Hints: get(hObject,'String') returns contents of edit5 as text
 %        str2double(get(hObject,'String')) returns contents of edit5 as a double
 
@@ -269,7 +278,8 @@ function edit6_Callback(hObject, eventdata, handles)
 % hObject    handle to edit6 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
+global ysCero;
+ysCero=str2double(get(hObject,'String'));
 % Hints: get(hObject,'String') returns contents of edit6 as text
 %        str2double(get(hObject,'String')) returns contents of edit6 as a double
 
@@ -292,7 +302,8 @@ function edit7_Callback(hObject, eventdata, handles)
 % hObject    handle to edit7 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
+global usCinco;
+usCinco=str2double(get(hObject,'String'));
 % Hints: get(hObject,'String') returns contents of edit7 as text
 %        str2double(get(hObject,'String')) returns contents of edit7 as a double
 
@@ -315,7 +326,8 @@ function edit8_Callback(hObject, eventdata, handles)
 % hObject    handle to edit8 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
+global usCuatro;
+usCuatro=str2double(get(hObject,'String'));
 % Hints: get(hObject,'String') returns contents of edit8 as text
 %        str2double(get(hObject,'String')) returns contents of edit8 as a double
 
@@ -338,7 +350,8 @@ function edit9_Callback(hObject, eventdata, handles)
 % hObject    handle to edit9 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
+global usTres;
+usTres=str2double(get(hObject,'String'));
 % Hints: get(hObject,'String') returns contents of edit9 as text
 %        str2double(get(hObject,'String')) returns contents of edit9 as a double
 
@@ -361,7 +374,8 @@ function edit10_Callback(hObject, eventdata, handles)
 % hObject    handle to edit10 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
+global usDos;
+usDos=str2double(get(hObject,'String'));
 % Hints: get(hObject,'String') returns contents of edit10 as text
 %        str2double(get(hObject,'String')) returns contents of edit10 as a double
 
@@ -384,7 +398,8 @@ function edit11_Callback(hObject, eventdata, handles)
 % hObject    handle to edit11 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
+global usUno;
+usUno=str2double(get(hObject,'String'));
 % Hints: get(hObject,'String') returns contents of edit11 as text
 %        str2double(get(hObject,'String')) returns contents of edit11 as a double
 
@@ -407,7 +422,8 @@ function edit12_Callback(hObject, eventdata, handles)
 % hObject    handle to edit12 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-
+global usCero;
+usCero=str2double(get(hObject,'String'));
 % Hints: get(hObject,'String') returns contents of edit12 as text
 %        str2double(get(hObject,'String')) returns contents of edit12 as a double
 
@@ -431,7 +447,7 @@ function edit13_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global ys;
-ys=str2double(get(hObject,'String'))
+ys=str2double(get(hObject,'String'));
 
 % Hints: get(hObject,'String') returns contents of edit13 as text
 %        str2double(get(hObject,'String')) returns contents of edit13 as a double
@@ -456,7 +472,7 @@ function edit14_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global us;
-us=str2double(get(hObject,'String'))
+us=str2double(get(hObject,'String'));
 % Hints: get(hObject,'String') returns contents of edit14 as text
 %        str2double(get(hObject,'String')) returns contents of edit14 as a double
 
@@ -481,6 +497,7 @@ function pushbutton2_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 global ys;
 global us;
+
 if isempty(ys) 
     errordlg('Campo vacio','Error')
 elseif isempty(us)
@@ -489,73 +506,121 @@ elseif ys > 5 || us > 5
     errordlg('El grado de los polinomios es muy alto!','Error')      
 elseif ys <= 0 || us <= 0
     errordlg('Grado no permitido!','Error')
-%%else
-    %%set(hObject.text7, 'string', 'Hola!');
-    %%Principal;
-end
-
-switch ys
+else
+    switch ys
     case 1
         set(handles.edit5, 'Enable', 'on');
         set(handles.edit6, 'Enable', 'on');
+        
     case 2
         set(handles.edit4, 'Enable', 'on');
         set(handles.edit5, 'Enable', 'on');
         set(handles.edit6, 'Enable', 'on');
+        
     case 3
         set(handles.edit3, 'Enable', 'on');
         set(handles.edit4, 'Enable', 'on');
         set(handles.edit5, 'Enable', 'on');
         set(handles.edit6, 'Enable', 'on');
+        
     case 4
         set(handles.edit2, 'Enable', 'on');
         set(handles.edit3, 'Enable', 'on');
         set(handles.edit4, 'Enable', 'on');
         set(handles.edit5, 'Enable', 'on');
         set(handles.edit6, 'Enable', 'on');
+        
     case 5
         set(handles.edit1, 'Enable', 'on');
         set(handles.edit2, 'Enable', 'on');
         set(handles.edit3, 'Enable', 'on');
         set(handles.edit4, 'Enable', 'on');
         set(handles.edit5, 'Enable', 'on');
-        set(handles.edit6, 'Enable', 'on'); 
+        set(handles.edit6, 'Enable', 'on');
+        
+    end
+
+    switch us
+        case 1
+            set(handles.edit11, 'Enable', 'on');
+            set(handles.edit12, 'Enable', 'on');
+            
+        case 2
+            set(handles.edit10, 'Enable', 'on');
+            set(handles.edit11, 'Enable', 'on');
+            set(handles.edit12, 'Enable', 'on');
+            
+        case 3
+            set(handles.edit9, 'Enable', 'on');
+            set(handles.edit10, 'Enable', 'on');
+            set(handles.edit11, 'Enable', 'on');
+            set(handles.edit12, 'Enable', 'on');
+            
+        case 4
+            set(handles.edit8, 'Enable', 'on');
+            set(handles.edit9, 'Enable', 'on');
+            set(handles.edit10, 'Enable', 'on');
+            set(handles.edit11, 'Enable', 'on');
+            set(handles.edit12, 'Enable', 'on');
+            
+        case 5
+            set(handles.edit7, 'Enable', 'on');
+            set(handles.edit8, 'Enable', 'on');
+            set(handles.edit9, 'Enable', 'on');
+            set(handles.edit10, 'Enable', 'on');
+            set(handles.edit11, 'Enable', 'on');
+            set(handles.edit12, 'Enable', 'on');
+            
+    end
+    
+    set(handles.pushbutton2, 'Enable', 'off');
+    set(handles.edit13, 'Enable', 'off');
+    set(handles.edit14, 'Enable', 'off');
+    set(handles.pushbutton3, 'Enable', 'on');
 end
-
-switch us
-    case 1
-        set(handles.edit11, 'Enable', 'on');
-        set(handles.edit12, 'Enable', 'on');
-    case 2
-        set(handles.edit10, 'Enable', 'on');
-        set(handles.edit11, 'Enable', 'on');
-        set(handles.edit12, 'Enable', 'on');
-    case 3
-        set(handles.edit9, 'Enable', 'on');
-        set(handles.edit10, 'Enable', 'on');
-        set(handles.edit11, 'Enable', 'on');
-        set(handles.edit12, 'Enable', 'on');
-    case 4
-        set(handles.edit8, 'Enable', 'on');
-        set(handles.edit9, 'Enable', 'on');
-        set(handles.edit10, 'Enable', 'on');
-        set(handles.edit11, 'Enable', 'on');
-        set(handles.edit12, 'Enable', 'on');
-    case 5
-        set(handles.edit7, 'Enable', 'on');
-        set(handles.edit8, 'Enable', 'on');
-        set(handles.edit9, 'Enable', 'on');
-        set(handles.edit10, 'Enable', 'on');
-        set(handles.edit11, 'Enable', 'on');
-        set(handles.edit12, 'Enable', 'on'); 
-end
-
-
 
 
 
 % --- Executes on button press in pushbutton3.
 function pushbutton3_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton3 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global ys;
+global us;
+
+switch ys
+    case 1
+        s1=str2double(get(handles.edit5, 'String'));
+        s0=str2double(get(handles.edit6, 'String'));
+        Y = [s1 s0];
+end
+
+switch us
+    case 2
+        s2=str2double(get(handles.edit10, 'String'));
+        s1=str2double(get(handles.edit11, 'String'));
+        s0=str2double(get(handles.edit12, 'String'));
+        U = [s2 s1 s0];
+         
+end
+gs=(tf(Y,U));  
+t=evalc('gs');
+set(handles.text7,'string',t);
+
+
+ 
+
+
+% --- Executes on button press in pushbutton4.
+function pushbutton4_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton4 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on button press in pushbutton5.
+function pushbutton5_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton5 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
