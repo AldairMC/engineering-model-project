@@ -111,6 +111,10 @@ set(handles.pushbutton3,'CData',imbtn3)
 imbtn4=imread('clear.jpg');
 set(handles.pushbutton4,'CData',imbtn4)
 
+imbtn5=imread('cancel.jpg');
+set(handles.pushbutton5,'CData',imbtn5)
+
+
 set(handles.edit1, 'Enable', 'off')
 set(handles.edit2, 'Enable', 'off')
 set(handles.edit3, 'Enable', 'off')
@@ -593,7 +597,7 @@ switch ys
     case 1
         s1=str2double(get(handles.edit5, 'String'));
         s0=str2double(get(handles.edit6, 'String'));
-        Y = [s1 s0];
+        y = [s1 s0];
 end
 
 switch us
@@ -601,12 +605,23 @@ switch us
         s2=str2double(get(handles.edit10, 'String'));
         s1=str2double(get(handles.edit11, 'String'));
         s0=str2double(get(handles.edit12, 'String'));
-        U = [s2 s1 s0];
+        u = [s2 s1 s0];
          
 end
-gs=(tf(Y,U));  
+gs=tf(y,u);  
 t=evalc('gs');
 set(handles.text7,'string',t);
+ceros=roots(gs.num{1});
+polos=roots(gs.den{1});
+set(handles.text11, 'string', ceros);
+set(handles.text12, 'string', polos);
+
+axes(handles.axes16);
+step(gs)
+axes(handles.pzmap);
+pzmap(gs);
+
+
 
 
  

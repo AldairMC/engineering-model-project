@@ -22,7 +22,7 @@ function varargout = Principal(varargin)
 
 % Edit the above text to modify the response to help Principal
 
-% Last Modified by GUIDE v2.5 08-Nov-2018 18:12:11
+% Last Modified by GUIDE v2.5 09-Nov-2018 10:40:26
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -107,6 +107,9 @@ set(handles.pushbutton2,'CData',imbtn2)
 
 imbtn3=imread('ok.jpg');
 set(handles.pushbutton3,'CData',imbtn3)
+
+imbtn4=imread('clear.jpg');
+set(handles.pushbutton4,'CData',imbtn4)
 
 set(handles.edit1, 'Enable', 'off')
 set(handles.edit2, 'Enable', 'off')
@@ -494,8 +497,7 @@ function pushbutton2_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 global ys;
 global us;
-global a;
-global b;
+
 if isempty(ys) 
     errordlg('Campo vacio','Error')
 elseif isempty(us)
@@ -509,25 +511,25 @@ else
     case 1
         set(handles.edit5, 'Enable', 'on');
         set(handles.edit6, 'Enable', 'on');
-        a = 2;
+        
     case 2
         set(handles.edit4, 'Enable', 'on');
         set(handles.edit5, 'Enable', 'on');
         set(handles.edit6, 'Enable', 'on');
-        a = 3;
+        
     case 3
         set(handles.edit3, 'Enable', 'on');
         set(handles.edit4, 'Enable', 'on');
         set(handles.edit5, 'Enable', 'on');
         set(handles.edit6, 'Enable', 'on');
-        a = 4;
+        
     case 4
         set(handles.edit2, 'Enable', 'on');
         set(handles.edit3, 'Enable', 'on');
         set(handles.edit4, 'Enable', 'on');
         set(handles.edit5, 'Enable', 'on');
         set(handles.edit6, 'Enable', 'on');
-        a = 5;
+        
     case 5
         set(handles.edit1, 'Enable', 'on');
         set(handles.edit2, 'Enable', 'on');
@@ -535,32 +537,32 @@ else
         set(handles.edit4, 'Enable', 'on');
         set(handles.edit5, 'Enable', 'on');
         set(handles.edit6, 'Enable', 'on');
-        a = 6;
+        
     end
 
     switch us
         case 1
             set(handles.edit11, 'Enable', 'on');
             set(handles.edit12, 'Enable', 'on');
-            b = 2;
+            
         case 2
             set(handles.edit10, 'Enable', 'on');
             set(handles.edit11, 'Enable', 'on');
             set(handles.edit12, 'Enable', 'on');
-            b = 3;
+            
         case 3
             set(handles.edit9, 'Enable', 'on');
             set(handles.edit10, 'Enable', 'on');
             set(handles.edit11, 'Enable', 'on');
             set(handles.edit12, 'Enable', 'on');
-            b = 4;
+            
         case 4
             set(handles.edit8, 'Enable', 'on');
             set(handles.edit9, 'Enable', 'on');
             set(handles.edit10, 'Enable', 'on');
             set(handles.edit11, 'Enable', 'on');
             set(handles.edit12, 'Enable', 'on');
-            b = 5;
+            
         case 5
             set(handles.edit7, 'Enable', 'on');
             set(handles.edit8, 'Enable', 'on');
@@ -568,7 +570,7 @@ else
             set(handles.edit10, 'Enable', 'on');
             set(handles.edit11, 'Enable', 'on');
             set(handles.edit12, 'Enable', 'on');
-            b = 6;
+            
     end
     
     set(handles.pushbutton2, 'Enable', 'off');
@@ -591,7 +593,7 @@ switch ys
     case 1
         s1=str2double(get(handles.edit5, 'String'));
         s0=str2double(get(handles.edit6, 'String'));
-        Y = [s1 s0];
+        y = [s1 s0];
 end
 
 switch us
@@ -599,15 +601,35 @@ switch us
         s2=str2double(get(handles.edit10, 'String'));
         s1=str2double(get(handles.edit11, 'String'));
         s0=str2double(get(handles.edit12, 'String'));
-        U = [s2 s1 s0];
+        u = [s2 s1 s0];
          
 end
+gs=tf(y,u);  
+t=evalc('gs');
+set(handles.text7,'string',t);
+ceros=roots(gs.num{1});
+polos=roots(gs.den{1});
+set(handles.text11, 'string', ceros);
+set(handles.text12, 'string', polos);
 
-gs=tf(Y,U);
-set(handles.text7, 'string', gs);
+pzmap(gs);
+axes(handles.pzmap); 
 
-    
 
 
 
  
+
+
+% --- Executes on button press in pushbutton4.
+function pushbutton4_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton4 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on button press in pushbutton5.
+function pushbutton5_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton5 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
