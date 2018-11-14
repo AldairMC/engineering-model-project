@@ -22,7 +22,7 @@ function varargout = Principal(varargin)
 
 % Edit the above text to modify the response to help Principal
 
-% Last Modified by GUIDE v2.5 09-Nov-2018 10:40:26
+% Last Modified by GUIDE v2.5 14-Nov-2018 11:05:46
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -597,6 +597,10 @@ function pushbutton3_Callback(hObject, eventdata, handles)
 global ys;
 global us;
 global gs;
+global polos;
+global ceros;
+global u numerador;
+global y denominador;
 
 switch ys
     case 1
@@ -643,7 +647,7 @@ switch us
         s2=str2double(get(handles.edit10, 'String'));
         s1=str2double(get(handles.edit11, 'String'));
         s0=str2double(get(handles.edit12, 'String'));
-        y = [s2 s1 s0];
+        u = [s2 s1 s0];
     case 3
         s3=str2double(get(handles.edit9, 'String'));
         s2=str2double(get(handles.edit10, 'String'));
@@ -669,23 +673,42 @@ switch us
         s0=str2double(get(handles.edit12, 'String'));
         u = s0; 
 end
-gs=tf(y,u);  
+numerador=u;
+denominador=y;
+gs=tf(u,y);  
 t=evalc('gs');
 set(handles.text7,'string',t);
+%Polos y ceros
 ceros=roots(gs.num{1});
 polos=roots(gs.den{1});
 set(handles.text11, 'string', ceros);
 set(handles.text12, 'string', polos);
-
-if polos < 0
-   a='El sistema es estable'; 
-   set(handles.text16, 'string', a); 
+%Establilidad del sistema
+a=0;
+for i=1:length(polos) 
+    if polos(i) < 0
+       a=a+1;
+    end
+    if a > 1
+        b='El sistemas es estable';
+    else
+        b='El sistemas es inestable';
+    end
 end
+set(handles.text16, 'string', b);
+%Grafica funcion 
+    %axes(handles.axes16);
+    %step(gs);
+%Grafica polos y ceros 
+    %axes(handles.pzmap);
+    %pzmap(gs);
+    
 
-axes(handles.axes16);
-step(gs);
-axes(handles.pzmap);
-pzmap(gs);
+%Sobre Paso
+
+
+%Tiempo de acentamiento
+
 
 
 
@@ -703,5 +726,49 @@ function pushbutton4_Callback(hObject, eventdata, handles)
 % --- Executes on button press in pushbutton5.
 function pushbutton5_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton5 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on button press in gradoDos.
+function gradoDos_Callback(hObject, eventdata, handles)
+% hObject    handle to gradoDos (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+global denominador numerador newNum newDen newFunction gs;
+
+if length(denominador) > 2
+    for i=1:2
+       auxMinimo = min(denominador);
+       grado2(i)=auxMinimo;
+       denominador(denominador == auxMinimo) = [];
+    end
+    
+    for i=1:length(denominador)
+        auxMinimo = denominador(i);
+        numerador(numerador == round(auxMinimo)) = [];
+    end
+   
+    [num,den]=zp2tf(numerador, grado2);
+    newFunction = ts(num,den);
+    t=evaluc('newFunction');
+    set(handles.text22, 'string', t);
+else
+    newFunction = gs
+    sset(handles.text22, 'string', newFunction);
+end
+
+
+
+% --- Executes on button press in pushbutton7.
+function pushbutton7_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton7 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on button press in pushbutton8.
+function pushbutton8_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton8 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
