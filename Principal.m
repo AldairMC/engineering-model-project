@@ -508,43 +508,47 @@ elseif isempty(us)
     errordlg('Campo vacio','Error')
 elseif ys > 5 || us > 5 
     errordlg('El grado de los polinomios es muy alto!','Error')      
-elseif ys <= 0 || us <= 0
+elseif ys < 0 || us < 0
     errordlg('Grado no permitido!','Error')
 else
     switch ys
-    case 1
-        set(handles.edit5, 'Enable', 'on');
-        set(handles.edit6, 'Enable', 'on');
-        
-    case 2
-        set(handles.edit4, 'Enable', 'on');
-        set(handles.edit5, 'Enable', 'on');
-        set(handles.edit6, 'Enable', 'on');
-        
-    case 3
-        set(handles.edit3, 'Enable', 'on');
-        set(handles.edit4, 'Enable', 'on');
-        set(handles.edit5, 'Enable', 'on');
-        set(handles.edit6, 'Enable', 'on');
-        
-    case 4
-        set(handles.edit2, 'Enable', 'on');
-        set(handles.edit3, 'Enable', 'on');
-        set(handles.edit4, 'Enable', 'on');
-        set(handles.edit5, 'Enable', 'on');
-        set(handles.edit6, 'Enable', 'on');
-        
-    case 5
-        set(handles.edit1, 'Enable', 'on');
-        set(handles.edit2, 'Enable', 'on');
-        set(handles.edit3, 'Enable', 'on');
-        set(handles.edit4, 'Enable', 'on');
-        set(handles.edit5, 'Enable', 'on');
-        set(handles.edit6, 'Enable', 'on');
-        
+        case 0
+            set(handles.edit6, 'Enable', 'on');
+        case 1
+            set(handles.edit5, 'Enable', 'on');
+            set(handles.edit6, 'Enable', 'on');
+
+        case 2
+            set(handles.edit4, 'Enable', 'on');
+            set(handles.edit5, 'Enable', 'on');
+            set(handles.edit6, 'Enable', 'on');
+
+        case 3
+            set(handles.edit3, 'Enable', 'on');
+            set(handles.edit4, 'Enable', 'on');
+            set(handles.edit5, 'Enable', 'on');
+            set(handles.edit6, 'Enable', 'on');
+
+        case 4
+            set(handles.edit2, 'Enable', 'on');
+            set(handles.edit3, 'Enable', 'on');
+            set(handles.edit4, 'Enable', 'on');
+            set(handles.edit5, 'Enable', 'on');
+            set(handles.edit6, 'Enable', 'on');
+
+        case 5
+            set(handles.edit1, 'Enable', 'on');
+            set(handles.edit2, 'Enable', 'on');
+            set(handles.edit3, 'Enable', 'on');
+            set(handles.edit4, 'Enable', 'on');
+            set(handles.edit5, 'Enable', 'on');
+            set(handles.edit6, 'Enable', 'on');
+
     end
 
     switch us
+        case 0
+            set(handles.edit12, 'Enable', 'on');
         case 1
             set(handles.edit11, 'Enable', 'on');
             set(handles.edit12, 'Enable', 'on');
@@ -592,21 +596,78 @@ function pushbutton3_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 global ys;
 global us;
+global gs;
 
 switch ys
     case 1
         s1=str2double(get(handles.edit5, 'String'));
         s0=str2double(get(handles.edit6, 'String'));
         y = [s1 s0];
+    case 2
+        s2=str2double(get(handles.edit4, 'String'));
+        s1=str2double(get(handles.edit5, 'String'));
+        s0=str2double(get(handles.edit6, 'String'));
+        y = [s2 s1 s0];
+    case 3
+        s3=str2double(get(handles.edit3, 'String'));
+        s2=str2double(get(handles.edit4, 'String'));
+        s1=str2double(get(handles.edit5, 'String'));
+        s0=str2double(get(handles.edit6, 'String'));
+        y = [s3 s2 s1 s0];
+    case 4
+        s4=str2double(get(handles.edit2, 'String'));
+        s3=str2double(get(handles.edit3, 'String'));
+        s2=str2double(get(handles.edit4, 'String'));
+        s1=str2double(get(handles.edit5, 'String'));
+        s0=str2double(get(handles.edit6, 'String'));
+        y = [s4 s3 s2 s1 s0];
+    case 5
+        s5=str2double(get(handles.edit1, 'String'));
+        s4=str2double(get(handles.edit2, 'String'));
+        s3=str2double(get(handles.edit3, 'String'));
+        s2=str2double(get(handles.edit4, 'String'));
+        s1=str2double(get(handles.edit5, 'String'));
+        s0=str2double(get(handles.edit6, 'String'));
+        y = [s5 s4 s3 s2 s1 s0];
+    case 0
+        s0=str2double(get(handles.edit6, 'String'));
+        y = s0;
 end
 
 switch us
+    case 1
+        s1=str2double(get(handles.edit11, 'String'));
+        s0=str2double(get(handles.edit12, 'String'));
+        u = [s1 s0];
     case 2
         s2=str2double(get(handles.edit10, 'String'));
         s1=str2double(get(handles.edit11, 'String'));
         s0=str2double(get(handles.edit12, 'String'));
-        u = [s2 s1 s0];
-         
+        y = [s2 s1 s0];
+    case 3
+        s3=str2double(get(handles.edit9, 'String'));
+        s2=str2double(get(handles.edit10, 'String'));
+        s1=str2double(get(handles.edit11, 'String'));
+        s0=str2double(get(handles.edit12, 'String'));
+        u = [s3 s2 s1 s0];
+    case 4
+        s4=str2double(get(handles.edit8, 'String'));
+        s3=str2double(get(handles.edit9, 'String'));
+        s2=str2double(get(handles.edit10, 'String'));
+        s1=str2double(get(handles.edit11, 'String'));
+        s0=str2double(get(handles.edit12,'String'));
+        u = [s4 s3 s2 s1 s0];
+    case 5
+        s5=str2double(get(handles.edit7, 'String'));
+        s4=str2double(get(handles.edit8, 'String'));
+        s3=str2double(get(handles.edit9, 'String'));
+        s2=str2double(get(handles.edit10, 'String'));
+        s1=str2double(get(handles.edit11, 'String'));
+        s0=str2double(get(handles.edit12, 'String'));
+        u = [s5 s4 s3 s2 s1 s0];
+    case 0
+        s0=str2double(get(handles.edit12, 'String'));
+        u = s0; 
 end
 gs=tf(y,u);  
 t=evalc('gs');
@@ -616,8 +677,13 @@ polos=roots(gs.den{1});
 set(handles.text11, 'string', ceros);
 set(handles.text12, 'string', polos);
 
+if polos < 0
+   a='El sistema es estable'; 
+   set(handles.text16, 'string', a); 
+end
+
 axes(handles.axes16);
-step(gs)
+step(gs);
 axes(handles.pzmap);
 pzmap(gs);
 
