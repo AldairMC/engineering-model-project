@@ -780,6 +780,23 @@ function errores_Callback(hObject, eventdata, handles)
 % hObject    handle to errores (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+global gs;
+s=tf('s');
+%Error y constante de posición 
+kp=dcgain(gs);
+eKp=1/(1+kp);
+set(handles.text49, 'string', kp);
+set(handles.text50, 'string', eKp);
+%Error y constante de velocidad
+kv=dcgain(s*gs);
+eKv=1/kv;
+set(handles.text51, 'string', kv);
+set(handles.text52, 'string', eKv);
+%Error y constante de aceleración
+ka=dcgain(s^2*gs);
+eKa=1/ka;
+set(handles.text53, 'string', ka);
+set(handles.text54, 'string', eKa);
 
 
 % --- Executes on button press in rampa.

@@ -81,9 +81,10 @@ function mostrar_Callback(hObject, eventdata, handles)
 %Gráfica escalón
 global gs;
 s=tf('s');
-escalon = ((1/s)*gs);
+t=0:0.1:100;
+escalon = (s*gs);
 axes(handles.axes1);
-step(escalon, 'r');
+step(escalon, t, 'r');
 
 
 

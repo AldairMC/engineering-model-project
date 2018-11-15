@@ -81,9 +81,9 @@ function mostrar_Callback(hObject, eventdata, handles)
 %Grafica rampa
 global gs;
 s=tf('s');
-rampa = ((1/s^2)*gs);
+rampa = ((s^2)*gs);
 axes(handles.axes1);
-step(rampa, 'b');
+step(rampa);
 
 
 % --- Executes on button press in exit.
