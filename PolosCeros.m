@@ -81,6 +81,10 @@ function mostrar_Callback(hObject, eventdata, handles)
     global gs;
     axes(handles.axes1);
     pzmap(gs);
+    xlabel('Eje Real');
+    title('');
+    ylabel('Eje Imaginario');
+
 
 
 % --- Executes on button press in exit.
@@ -88,3 +92,4 @@ function exit_Callback(hObject, eventdata, handles)
 % hObject    handle to exit (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+close(handles.output);

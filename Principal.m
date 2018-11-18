@@ -22,7 +22,7 @@ function varargout = Principal(varargin)
 
 % Edit the above text to modify the response to help Principal
 
-% Last Modified by GUIDE v2.5 17-Nov-2018 17:21:35
+% Last Modified by GUIDE v2.5 17-Nov-2018 23:23:23
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -109,10 +109,8 @@ imbtn3=imread('ok.jpg');
 set(handles.pushbutton3,'CData',imbtn3)
 
 imbtn4=imread('clear.jpg');
-set(handles.pushbutton4,'CData',imbtn4)
+set(handles.limpiar,'CData',imbtn4)
 
-imbtn5=imread('cancel.jpg');
-set(handles.pushbutton5,'CData',imbtn5)
 
 
 set(handles.edit1, 'Enable', 'off')
@@ -128,7 +126,12 @@ set(handles.edit10, 'Enable', 'off')
 set(handles.edit11, 'Enable', 'off')
 set(handles.edit12, 'Enable', 'off')
 set(handles.pushbutton3, 'Enable', 'off');
-
+set(handles.gradoDos, 'Enable' , 'off');
+set(handles.pushbutton7, 'Enable' , 'off');
+set(handles.amortiguamiento, 'Enable' , 'off');
+set(handles.errores, 'Enable' , 'off');
+set(handles.pzmap, 'Enable' , 'off');
+set(handles.escalon, 'Enable' , 'off');
 % Choose default command line output for Principal
 handles.output = hObject;
 
@@ -703,41 +706,72 @@ for i=1:length(p)
     end
 end
 set(handles.text16, 'string', b);
-%Grafica funcion 
-    %axes(handles.axes16);
-    %step(gs);
-%Grafica polos y ceros 
-    %axes(handles.pzmap);
-    %pzmap(gs);
-    
 
-%Sobre Paso
+%Activar botones
+set(handles.pushbutton3, 'Enable', 'off');
+set(handles.gradoDos, 'Enable' , 'on');
+set(handles.errores, 'Enable' , 'on');
+set(handles.pzmap, 'Enable' , 'on');
+set(handles.escalon, 'Enable' , 'on');
 
-
-%Tiempo de acentamiento
-
-
-
-
-
-
-
-
- 
-
-
-% --- Executes on button press in pushbutton4.
-function pushbutton4_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton4 (see GCBO)
+% --- Executes on button press in limpiar.
+function limpiar_Callback(hObject, eventdata, handles)
+% hObject    handle to limpiar (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+set(handles.edit13, 'string', '');
+set(handles.edit14, 'string', '');
+set(handles.edit13, 'Enable' , 'on');
+set(handles.edit14, 'Enable' , 'on');
+set(handles.pushbutton2, 'Enable', 'on');
 
+set(handles.edit1, 'Enable', 'off');
+set(handles.edit2, 'Enable', 'off');
+set(handles.edit3, 'Enable', 'off');
+set(handles.edit4, 'Enable', 'off');
+set(handles.edit5, 'Enable', 'off');
+set(handles.edit6, 'Enable', 'off');
+set(handles.edit7, 'Enable', 'off');
+set(handles.edit8, 'Enable', 'off');
+set(handles.edit9, 'Enable', 'off');
+set(handles.edit10, 'Enable', 'off');
+set(handles.edit11, 'Enable', 'off');
+set(handles.edit12, 'Enable', 'off');
 
-% --- Executes on button press in pushbutton5.
-function pushbutton5_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton5 (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+set(handles.edit1, 'string', '');
+set(handles.edit2, 'string', '');
+set(handles.edit3, 'string', '');
+set(handles.edit4, 'string', '');
+set(handles.edit5, 'string', '');
+set(handles.edit6, 'string', '');
+set(handles.edit7, 'string', '');
+set(handles.edit8, 'string', '');
+set(handles.edit9, 'string', '');
+set(handles.edit10, 'string', '');
+set(handles.edit11, 'string', '');
+set(handles.edit12, 'string', '');
+
+set(handles.text7, 'string', '');
+set(handles.text11, 'string', '');
+set(handles.text12, 'string', '');
+set(handles.text19, 'string', '');
+set(handles.text16, 'string', '');
+set(handles.text22, 'string', '');
+set(handles.text25, 'string', '');
+set(handles.text26, 'string', '');
+set(handles.text49, 'string', '');
+set(handles.text50, 'string', '');
+set(handles.text51, 'string', '');
+set(handles.text52, 'string', '');
+set(handles.text53, 'string', '');
+set(handles.text54, 'string', '');
+
+set(handles.pushbutton7, 'Enable', 'off');
+set(handles.amortiguamiento, 'Enable', 'off');
+
+set(handles.errores, 'Enable', 'off');
+set(handles.pzmap, 'Enable', 'off');
+set(handles.escalon, 'Enable', 'off');
 
 
 % --- Executes on button press in gradoDos.
@@ -771,6 +805,9 @@ else
 end
 
 set(handles.text16, 'string', '');
+set(handles.pushbutton7, 'Enable' , 'on');
+set(handles.amortiguamiento, 'Enable' , 'on');
+set(handles.gradoDos, 'Enable', 'off');
 
 
 
@@ -792,6 +829,7 @@ ts=3.2/(zeta*omega);
 
 set(handles.text25, 'string', sp);
 set(handles.text26, 'string', ts);
+set(handles.pushbutton7, 'Enable', 'off');
 
 
 % --- Executes on button press in errores.
@@ -817,15 +855,7 @@ eKa=1/ka;
 set(handles.text53, 'string', ka);
 set(handles.text54, 'string', eKa);
 
-
-% --- Executes on button press in rampa.
-function rampa_Callback(hObject, eventdata, handles)
-% hObject    handle to rampa (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
-
-%Interfaz rampa
-Rampa
+set(handles.errores, 'Enable', 'off');
 
 
 % --- Executes on button press in escalon.
@@ -834,8 +864,8 @@ function escalon_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-%Interfaz escalon
-Escalon
+%Interfaz escalon y rampa
+EscalonyRampa
 
 
 % --- Executes on button press in pzmap.
@@ -862,7 +892,7 @@ function amortiguamiento_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global zeta;
-
+a=(-1);
 if zeta == 0
     x = 'No amortiguado';
     set(handles.text16, 'string', x);
@@ -872,10 +902,11 @@ elseif zeta == 1
 elseif zeta > 1
     x = 'Sobre-Amortiguado';
     set(handles.text16, 'string', x);
-elseif zeta > 0 & zeta < 1
+elseif zeta > 0 && zeta < 1
     x = 'Sub-Amortiguado';
     set(handles.text16, 'string', x);
-elseif zeta < -1 
+elseif zeta < a 
     x = 'Amortiguado negativo';
     set(handles.text16, 'string', x);
 end
+set(handles.amortiguamiento, 'Enable', 'off');
