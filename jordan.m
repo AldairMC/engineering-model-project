@@ -1,35 +1,35 @@
-function varargout = Rampa(varargin)
-% RAMPA MATLAB code for Rampa.fig
-%      RAMPA, by itself, creates a new RAMPA or raises the existing
+function varargout = jordan(varargin)
+% JORDAN MATLAB code for jordan.fig
+%      JORDAN, by itself, creates a new JORDAN or raises the existing
 %      singleton*.
 %
-%      H = RAMPA returns the handle to a new RAMPA or the handle to
+%      H = JORDAN returns the handle to a new JORDAN or the handle to
 %      the existing singleton*.
 %
-%      RAMPA('CALLBACK',hObject,eventData,handles,...) calls the local
-%      function named CALLBACK in RAMPA.M with the given input arguments.
+%      JORDAN('CALLBACK',hObject,eventData,handles,...) calls the local
+%      function named CALLBACK in JORDAN.M with the given input arguments.
 %
-%      RAMPA('Property','Value',...) creates a new RAMPA or raises the
+%      JORDAN('Property','Value',...) creates a new JORDAN or raises the
 %      existing singleton*.  Starting from the left, property value pairs are
-%      applied to the GUI before Rampa_OpeningFcn gets called.  An
+%      applied to the GUI before jordan_OpeningFcn gets called.  An
 %      unrecognized property name or invalid value makes property application
-%      stop.  All inputs are passed to Rampa_OpeningFcn via varargin.
+%      stop.  All inputs are passed to jordan_OpeningFcn via varargin.
 %
 %      *See GUI Options on GUIDE's Tools menu.  Choose "GUI allows only one
 %      instance to run (singleton)".
 %
 % See also: GUIDE, GUIDATA, GUIHANDLES
 
-% Edit the above text to modify the response to help Rampa
+% Edit the above text to modify the response to help jordan
 
-% Last Modified by GUIDE v2.5 15-Nov-2018 02:45:31
+% Last Modified by GUIDE v2.5 17-Nov-2018 19:40:35
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
 gui_State = struct('gui_Name',       mfilename, ...
                    'gui_Singleton',  gui_Singleton, ...
-                   'gui_OpeningFcn', @Rampa_OpeningFcn, ...
-                   'gui_OutputFcn',  @Rampa_OutputFcn, ...
+                   'gui_OpeningFcn', @jordan_OpeningFcn, ...
+                   'gui_OutputFcn',  @jordan_OutputFcn, ...
                    'gui_LayoutFcn',  [] , ...
                    'gui_Callback',   []);
 if nargin && ischar(varargin{1})
@@ -44,26 +44,26 @@ end
 % End initialization code - DO NOT EDIT
 
 
-% --- Executes just before Rampa is made visible.
-function Rampa_OpeningFcn(hObject, eventdata, handles, varargin)
+% --- Executes just before jordan is made visible.
+function jordan_OpeningFcn(hObject, eventdata, handles, varargin)
 % This function has no output args, see OutputFcn.
 % hObject    handle to figure
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-% varargin   command line arguments to Rampa (see VARARGIN)
+% varargin   command line arguments to jordan (see VARARGIN)
 
-% Choose default command line output for Rampa
+% Choose default command line output for jordan
 handles.output = hObject;
 
 % Update handles structure
 guidata(hObject, handles);
 
-% UIWAIT makes Rampa wait for user response (see UIRESUME)
+% UIWAIT makes jordan wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
 
 
 % --- Outputs from this function are returned to the command line.
-function varargout = Rampa_OutputFcn(hObject, eventdata, handles) 
+function varargout = jordan_OutputFcn(hObject, eventdata, handles) 
 % varargout  cell array for returning output args (see VARARGOUT);
 % hObject    handle to figure
 % eventdata  reserved - to be defined in a future version of MATLAB
@@ -73,21 +73,21 @@ function varargout = Rampa_OutputFcn(hObject, eventdata, handles)
 varargout{1} = handles.output;
 
 
-% --- Executes on button press in mostrar.
-function mostrar_Callback(hObject, eventdata, handles)
-% hObject    handle to mostrar (see GCBO)
+% --- Executes on button press in pushbutton1.
+function pushbutton1_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton1 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-%Grafica rampa
-global gs;
-s=tf('s');
-rampa = ((1/s)*gs);
-axes(handles.axes1);
-step(rampa);
+global gs numerador denominador;
+a = gs
+num1 = numerador
+den1 = denominador
 
 
-% --- Executes on button press in exit.
-function exit_Callback(hObject, eventdata, handles)
-% hObject    handle to exit (see GCBO)
-% eventdata  reserved - to be defined in a future version of MATLAB
-% handles    structure with handles and user data (see GUIDATA)
+jordan(a)
+
+
+
+
+
+

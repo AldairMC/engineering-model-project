@@ -22,7 +22,7 @@ function varargout = Principal(varargin)
 
 % Edit the above text to modify the response to help Principal
 
-% Last Modified by GUIDE v2.5 17-Nov-2018 17:21:35
+% Last Modified by GUIDE v2.5 17-Nov-2018 16:00:06
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -770,8 +770,6 @@ else
     set(handles.text22, 'string', newF);
 end
 
-set(handles.text16, 'string', '');
-
 
 
 % --- Executes on button press in pushbutton7.
@@ -873,9 +871,11 @@ elseif zeta > 1
     x = 'Sobre-Amortiguado';
     set(handles.text16, 'string', x);
 elseif zeta > 0 & zeta < 1
-    x = 'Sub-Amortiguado';
+    x = 'No amortiguado';
     set(handles.text16, 'string', x);
-elseif zeta < -1 
-    x = 'Amortiguado negativo';
-    set(handles.text16, 'string', x);
+elseif < 0
 end
+
+
+
+

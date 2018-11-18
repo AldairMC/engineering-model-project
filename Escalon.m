@@ -82,7 +82,7 @@ function mostrar_Callback(hObject, eventdata, handles)
 global gs;
 s=tf('s');
 t=0:0.1:100;
-escalon = (s*gs);
+escalon = (gs);
 axes(handles.axes1);
 step(escalon, t, 'r');
 
