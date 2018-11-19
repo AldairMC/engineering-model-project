@@ -699,13 +699,16 @@ for i=1:length(p)
     if p(i) < 0
        a=a+1;
     end
-    if a > 1
+    if a >= 1
         b='El sistemas es estable';
     else
         b='El sistemas es inestable';
     end
 end
 set(handles.text16, 'string', b);
+
+%acentamiento y sobrepaso
+if
 
 %Activar botones
 set(handles.pushbutton3, 'Enable', 'off');
@@ -721,7 +724,10 @@ function limpiar_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 set(handles.edit13, 'string', '');
 set(handles.edit14, 'string', '');
+set(handles.edit13, 'Enable' , 'on');
+set(handles.edit14, 'Enable' , 'on');
 set(handles.pushbutton2, 'Enable', 'on');
+set(handles.pushbutton3, 'Enable', 'off');
 
 set(handles.edit1, 'Enable', 'off');
 set(handles.edit2, 'Enable', 'off');
@@ -752,7 +758,7 @@ set(handles.edit12, 'string', '');
 set(handles.text7, 'string', '');
 set(handles.text11, 'string', '');
 set(handles.text12, 'string', '');
-set(handles.tex19, 'string', '');
+set(handles.text19, 'string', '');
 set(handles.text16, 'string', '');
 set(handles.text22, 'string', '');
 set(handles.text25, 'string', '');
@@ -763,6 +769,7 @@ set(handles.text51, 'string', '');
 set(handles.text52, 'string', '');
 set(handles.text53, 'string', '');
 set(handles.text54, 'string', '');
+set(handles.text56, 'string', '');
 
 set(handles.pushbutton7, 'Enable', 'off');
 set(handles.amortiguamiento, 'Enable', 'off');
@@ -798,14 +805,14 @@ if length(p) > 2
     t=evalc('newF');
     set(handles.text22, 'string', t);
 else
-    newF = gs
-    set(handles.text22, 'string', newF);
+    %newF = gs
+    tmp=evalc('gs');
+    set(handles.text22, 'string', tmp);
 end
 
-set(handles.text16, 'string', '');
 set(handles.pushbutton7, 'Enable' , 'on');
 set(handles.amortiguamiento, 'Enable' , 'on');
-set(handles.gradoDos, 'Enable', '')
+set(handles.gradoDos, 'Enable', 'off');
 
 
 
@@ -814,19 +821,39 @@ function pushbutton7_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton7 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
-global den den2;
-global zeta;
+global den den2 y y2 p;
+global zeta omega;
 
-den2 = den./den(1) 
-omega = sqrt(den2(3))
-zeta = (den2(2))/(2*omega)  
-%Sobre paso
-sp= 100*exp(-pi*zeta/(sqrt(1-zeta^2)));
-%Acentamiento
-ts=3.2/(zeta*omega);
+if length(p) > 2
+    den2 = den./den(1); 
+    omega = sqrt(den2(3));
+    zeta = (den2(2))/(2*omega);  
+    %Sobre paso
+    sp= 100*exp(-pi*zeta/(sqrt(1-zeta^2)));
+    %Acentamiento
+    ts=3.2/(zeta*omega);
+    set(handles.text25, 'string', sp);
+    set(handles.text26, 'string', ts);
+elseif length(p) == 2
+    y2 = y./y(1); 
+    omega = sqrt(y2(3));
+    zeta = (y2(2))/(2*omega);  
+    %Sobre paso
+    sp= 100*exp(-pi*zeta/(sqrt(1-zeta^2)));
+    %Acentamiento
+    ts=3.2/(zeta*omega);
+    set(handles.text25, 'string', sp);
+    set(handles.text26, 'string', ts);
+elseif length(p) == 1 && length(p) == 0
+    warndlg('No se puede realizar los cálculos a ecuaciones de grado 1 e inferior','Warning');
+    set(handles.amortiguamiento, 'Enable', 'off');
+    set(handles.pushbutton7, 'Enable', 'off');
+end
 
-set(handles.text25, 'string', sp);
-set(handles.text26, 'string', ts);
+
+%set(handles.text25, 'string', sp);
+%set(handles.text26, 'string', ts);
+set(handles.pushbutton7, 'Enable', 'off');
 
 
 % --- Executes on button press in errores.
@@ -851,6 +878,8 @@ ka=dcgain(s^2*gs);
 eKa=1/ka;
 set(handles.text53, 'string', ka);
 set(handles.text54, 'string', eKa);
+
+set(handles.errores, 'Enable', 'off');
 
 
 % --- Executes on button press in escalon.
@@ -890,17 +919,21 @@ global zeta;
 a=(-1);
 if zeta == 0
     x = 'No amortiguado';
-    set(handles.text16, 'string', x);
+    set(handles.text56, 'string', x);
 elseif zeta == 1
     x = 'Criticamente amortiguado';
-    set(handles.text16, 'string', x);
+    set(handles.text56, 'string', x);
 elseif zeta > 1
     x = 'Sobre-Amortiguado';
-    set(handles.text16, 'string', x);
+    set(handles.text56, 'string', x);
 elseif zeta > 0 && zeta < 1
     x = 'Sub-Amortiguado';
-    set(handles.text16, 'string', x);
+    set(handles.text56, 'string', x);
 elseif zeta < a 
     x = 'Amortiguado negativo';
     set(handles.text16, 'string', x);
+else
+    x = 'Amortiguado negativo';
+    set(handles.text56, 'string', x);
 end
+set(handles.amortiguamiento, 'Enable', 'off');
