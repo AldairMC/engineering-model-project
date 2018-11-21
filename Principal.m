@@ -521,15 +521,16 @@ else
     switch ys
         case 0
             set(handles.edit6, 'Enable', 'on');
+            
         case 1
             set(handles.edit5, 'Enable', 'on');
             set(handles.edit6, 'Enable', 'on');
-
+          
         case 2
             set(handles.edit4, 'Enable', 'on');
             set(handles.edit5, 'Enable', 'on');
             set(handles.edit6, 'Enable', 'on');
-
+   
         case 3
             set(handles.edit3, 'Enable', 'on');
             set(handles.edit4, 'Enable', 'on');
@@ -696,13 +697,13 @@ set(handles.text19, 'string', k);
 %Establilidad del sistema
 a=0;
 for i=1:length(p) 
-    if p(i) < 0
+    if p(i) > 0
        a=a+1;
     end
     if a >= 1
-        b='El sistemas es estable';
-    else
         b='El sistemas es inestable';
+    else
+        b='El sistemas es estable';
     end
 end
 set(handles.text16, 'string', b);
@@ -721,18 +722,26 @@ if length(denominador) == 3
     set(handles.pushbutton7, 'Enable', 'off');
     set(handles.gradoDos, 'Enable', 'off');
     set(handles.errores, 'Enable', 'on');
-    set(handles.gradoDos, 'Enable', 'off');
+    
     
 elseif length(denominador) == 1 || length(denominador) == 2
     warndlg('No se puede realizar los cálculos a ecuaciones de grado 1 e inferior','Warning');
     set(handles.amortiguamiento, 'Enable', 'on');
     set(handles.pushbutton7, 'Enable', 'off');
     set(handles.gradoDos, 'Enable', 'off');
+else
+    %Activar botones
+set(handles.pushbutton3, 'Enable', 'off');
+set(handles.gradoDos, 'Enable', 'on');
+set(handles.errores, 'Enable' , 'on');
+set(handles.pzmap, 'Enable' , 'on');
+set(handles.escalon, 'Enable' , 'on');
+
 end
 
 %Activar botones
 set(handles.pushbutton3, 'Enable', 'off');
-set(handles.gradoDos, 'Enable', 'on');
+%%set(handles.gradoDos, 'Enable', 'on');
 set(handles.errores, 'Enable' , 'on');
 set(handles.pzmap, 'Enable' , 'on');
 set(handles.escalon, 'Enable' , 'on');
@@ -797,6 +806,8 @@ set(handles.amortiguamiento, 'Enable', 'off');
 set(handles.errores, 'Enable', 'off');
 set(handles.pzmap, 'Enable', 'off');
 set(handles.escalon, 'Enable', 'off');
+clear;
+clc;
 
 
 % --- Executes on button press in gradoDos.
@@ -921,7 +932,7 @@ function amortiguamiento_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 global zeta;
-a=(-1);
+
 if zeta == 0
     x = 'No amortiguado';
     set(handles.text56, 'string', x);
@@ -934,11 +945,8 @@ elseif zeta > 1
 elseif zeta > 0 && zeta < 1
     x = 'Sub-Amortiguado';
     set(handles.text56, 'string', x);
-elseif zeta < a 
+elseif zeta < 0 
     x = 'Amortiguado negativo';
     set(handles.text16, 'string', x);
-else
-    x = 'Amortiguado negativo';
-    set(handles.text56, 'string', x);
 end
 set(handles.amortiguamiento, 'Enable', 'off');
